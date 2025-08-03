@@ -1,7 +1,5 @@
 import type { StockCreateDTO } from '../model/dto/stock_create_dto.js';
-import type { Product } from '../model/interfaces/product.js';
 import type { Stock } from '../model/interfaces/stock.js';
-import { products } from '../repository/product_repository.js';
 import { stocks } from '../repository/stock_repository.js';
 
 export const getStocks = () => {

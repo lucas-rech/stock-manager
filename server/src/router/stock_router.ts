@@ -1,15 +1,15 @@
-import e from 'express';
+import e, { type Request, type Response } from 'express';
 import { createStock, getStocks } from '../service/stock_service.js';
 import type { StockCreateDTO } from '../model/dto/stock_create_dto.js';
 
 const router = e.Router();
 router.use(e.json());
 
-router.get('/all', (req, res) => {
+router.get('/all', (_req, res) => {
     res.status(200).json(getStocks());
 });
 
-router.post('/', async (req, res) => {
+router.post('/', async (req: Request, res: Response) => {
     try {
         const data: StockCreateDTO = req.body;
 
@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.put('find/:id', (req, res) => {
+router.put('find/:id', (req: Request, res: Response) => {
     const { id } = req.params;
     res.send(`Stock with ID ${id} updated`);
 });
