@@ -3,3 +3,4 @@ eslint.config.mjs
 package-lock.json
 dist
 .env
+.prettierrc
