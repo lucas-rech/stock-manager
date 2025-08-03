@@ -25,6 +25,7 @@ router.post('/', async (req: Request, res: Response) => {
     }
 });
 
+//TODO: Implements method
 router.put('find/:id', (req: Request, res: Response) => {
     const { id } = req.params;
     res.send(`Stock with ID ${id} updated`);

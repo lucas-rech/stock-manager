@@ -1,19 +1,33 @@
 import { products } from '../repository/product_repository.js';
 import type { Product } from '../model/interfaces/product.js';
 import { getStockById } from './stock_service.js';
+import type { ProductCreateDTO } from '../model/dto/product_create_dto.js';
 
-export const createProduct = (product: Product) => {
+export const createProduct = (product: ProductCreateDTO) => {
     if (getStockById(product.stockId) === `Stock with ID ${product.stockId} not found`) {
         return `Cannot create product: Stock with ID ${product.stockId} does not exist`;
     }
 
-    products.push(product);
+    const id = getAllProducts().length + 1;
+    const newProduct: Product = {
+        id: id,
+        stockId: product.stockId,
+        name: product.name,
+        category: product.category,
+        quantity: product.quantity
+    };
+
+    products.push(newProduct);
 };
+
+const getAllProducts = (): Product[] => {
+    return products;
+}
 
 export const getProductsByStockId = (stockId: number): Product[] | string => {
     const stockProducts = products.filter((product) => product.stockId === stockId);
     if (stockProducts.length === 0) {
-        return `No products found for stock with ID ${stockId}`;
+        return [];
     }
 
     return stockProducts;
